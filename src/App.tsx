@@ -1,36 +1,36 @@
-import React, { useState } from 'react';
-import { getTicker } from './api/gfinance'
-import { getPortfolio } from './api/portfolio'
 
-import { Button } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
+import PortfolioPage from  './pages/PortfolioPage';
 import './App.less';
 
+const { Header, Content, Footer } = Layout;
 function App() {
-  const [message, setMessage] = useState()
-  const getTickerClick = async () => {
-    try {
-      var m = await getTicker();
-      setMessage(m.message);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  const getPortfolioClick = async () => {
-    try {
-      var m = await getPortfolio();
-      // setMessage(m.message);
-      console.log(m);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
 
   return (
-    <div className="App">
-       <Button type="primary" onClick={getTickerClick}>Button</Button>
-       <Button type="default" onClick={getPortfolioClick}>Airt</Button>
-       {message}
-    </div>
+  <Layout className="layout">
+    <Header>
+      <div className="logo" />
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+        {new Array(5).fill(null).map((_, index) => {
+          const key = index + 1;
+          return <Menu.Item key={key}>{`nav ${key}`}</Menu.Item>;
+        })}
+      </Menu>
+    </Header>
+    <Content style={{ padding: '0 50px' }}>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item>Home</Breadcrumb.Item>
+        <Breadcrumb.Item>List</Breadcrumb.Item>
+        <Breadcrumb.Item>App</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="site-layout-content">
+        <PortfolioPage />
+      </div>
+    </Content>
+    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+  </Layout>
+   
   );
 }
 
