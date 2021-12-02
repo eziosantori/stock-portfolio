@@ -1,12 +1,9 @@
 import { Button, notification, Table } from 'antd'
 import React, { useState } from 'react'
-import { getPortfolio } from '../api/portfolio';
-import { useAuth } from '../hooks/useAuth';
-import { BasicLayout } from '../layouts';
+import { getPortfolio } from '../../api/portfolio';
 
-const PortfolioPage = () =>{
-  const auth = useAuth();
-  const [message, setMessage] = useState();
+export const Dashboard = () =>{
+    const [message, setMessage] = useState();
   const [data, setData] = useState();
   const columns = [
     {
@@ -47,13 +44,12 @@ const PortfolioPage = () =>{
     }
   }
     return (
-    <BasicLayout >
+    <>
        <Button type="default" onClick={getPortfolioClick}>Airt</Button>
-       <Button type="default" onClick={()=> auth?.signOut()} >Sign Out</Button>
        <Table key="id" dataSource={data} columns={columns} />;
        {message}
-    </BasicLayout>
+    </>
     )
 }
 
-export default PortfolioPage
+

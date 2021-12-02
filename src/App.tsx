@@ -1,36 +1,27 @@
-
-import { Layout, Menu, Breadcrumb } from 'antd';
+import {PrivateRoute, ProvideAuth} from './hooks/useAuth';
 import PortfolioPage from  './pages/PortfolioPage';
 import './App.less';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/Auth/LoginPage";
+import RegisterPage from "./pages/Auth/RegisterPage";
+import ResetPage from "./pages/Auth/ResetPage";
 
-const { Header, Content, Footer } = Layout;
 function App() {
   
-
+  const pvt = (el: JSX.Element) => <PrivateRoute element={el} />;
   return (
-  <Layout className="layout">
-    <Header>
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        {new Array(5).fill(null).map((_, index) => {
-          const key = index + 1;
-          return <Menu.Item key={key}>{`nav ${key}`}</Menu.Item>;
-        })}
-      </Menu>
-    </Header>
-    <Content style={{ padding: '0 50px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
-      <div className="site-layout-content">
-        <PortfolioPage />
-      </div>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-  </Layout>
-   
+    <ProvideAuth>
+    
+      <Router  >
+      <Routes>
+            <Route path="/"  element={<LoginPage />} />
+            <Route path="/login"  element={<LoginPage />} />
+            <Route  path="/register" element={<RegisterPage />} />
+            <Route  path="/reset" element={<ResetPage />} />
+            <Route  path="/dashboard" element={pvt(<PortfolioPage />) } />
+        </Routes>
+      </Router>    
+</ProvideAuth>
   );
 }
 

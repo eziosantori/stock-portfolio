@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../Ezio.Santori/Documents/Visual Studio Code/GitHub/stocks-portfolio/functions/gfinance.ts"],
-  "sourceRoot": "C:/Users/EZIO~1.SAN/AppData/Local/Temp/tmp-5580-JP8Qy6D5fbOU",
+  "sourceRoot": "C:/Users/EZIO~1.SAN/AppData/Local/Temp/tmp-11124-wDYQXYfsrVC6",
   "sourcesContent": ["\r\n\r\nexports.handler = async (event) => {\r\n    \r\n   return {\r\n       statusCode: 200,\r\n       body: JSON.stringify({\r\n           message: \"Ciao Mondo\" \r\n       })\r\n   }\r\n};"],
   "mappings": ";AAEA,QAAQ,UAAU,OAAO,UAAU;AAEhC,SAAO;AAAA,IACH,YAAY;AAAA,IACZ,MAAM,KAAK,UAAU;AAAA,MACjB,SAAS;AAAA;AAAA;AAAA;",
   "names": []
