@@ -1,0 +1,26 @@
+{
+    "id": "AMZN",
+    "symbol": "AMZN",
+    "name": "Amazon.com Inc",
+    "exchange": "NASDAQ",
+    "currency": "USD",
+    "datetime": "2021-12-02",
+    "open": "3457.88501",
+    "high": "3492.69995",
+    "low": "3426.00000",
+    "close": "3450.00000",
+    "volume": "1586752",
+    "previous_close": "3443.71997",
+    "change": "6.28003",
+    "percent_change": "0.18236",
+    "average_volume": "2775477",
+    "fifty_two_week": {
+        "low": "2881.00000",
+        "high": "3773.08008",
+        "low_change": "569.00000",
+        "high_change": "-323.08008",
+        "low_change_percent": "19.75009",
+        "high_change_percent": "-8.56277",
+        "range": "2881.000000 - 3773.080078"
+    }
+}

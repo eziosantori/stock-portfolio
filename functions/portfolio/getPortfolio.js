@@ -1,5 +1,5 @@
-const { portfolio } = require('../airtable/airtable');
-const formattedReturn = require('../airtable/formattedReturn');
+const { portfolio } = require('../_airtable/airtable');
+const formattedReturn = require('../_airtable/formattedReturn');
 module.exports = async (event) => {
     try {
         const items = await portfolio.select().firstPage();

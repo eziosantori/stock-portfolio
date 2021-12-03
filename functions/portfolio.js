@@ -1,4 +1,4 @@
-const formattedReturn = require('./airtable/formattedReturn');
+const formattedReturn = require('./_airtable/formattedReturn');
 const getPortfolio = require('./portfolio/getPortfolio');
 // const createCourse = require('./helpers/createCourse');
 // const deleteCourse = require('./helpers/deleteCourse');
