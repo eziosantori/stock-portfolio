@@ -2,22 +2,8 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
@@ -2765,12 +2751,12 @@ var require_main = __commonJS({
   }
 });
 
-// functions/quote.ts
-__export(exports, {
-  handler: () => handler
-});
-
 // functions/_iexCloud/index.ts
+__export(exports, {
+  getIexData: () => getIexData,
+  iexTokenKey: () => iexTokenKey,
+  iexUrl: () => iexUrl
+});
 var import_axios = __toModule(require_axios2());
 var import_dotenv = __toModule(require_main());
 import_dotenv.default.config();
@@ -2786,35 +2772,10 @@ var getIexData = async (ticker, scope, additionalQs = "") => {
     console.log("iexError", error);
   }
 };
-
-// functions/stocks/getQuote.ts
-var getQuote = async (event, context, callback) => {
-  const { symbol } = event.queryStringParameters;
-  const res = await getIexData(symbol, "quote", "period=annual");
-  const retData = __spreadValues({}, res);
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(retData)
-  };
-};
-var getQuote_default = getQuote;
-
-// functions/quote.ts
-var handler = async (event, context, callback) => {
-  if (event.httpMethod === "GET") {
-    return await getQuote_default(event, context, callback);
-  } else {
-    return {
-      statusCode: 405,
-      body: JSON.stringify("Error")
-    };
-  }
-};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  handler
+  getIexData,
+  iexTokenKey,
+  iexUrl
 });
-//# sourceMappingURL=quote.js.map
+//# sourceMappingURL=index.js.map

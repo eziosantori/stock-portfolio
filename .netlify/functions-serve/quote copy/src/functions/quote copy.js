@@ -2765,7 +2765,7 @@ var require_main = __commonJS({
   }
 });
 
-// functions/quote.ts
+// functions/quote copy.ts
 __export(exports, {
   handler: () => handler
 });
@@ -2802,7 +2802,7 @@ var getQuote = async (event, context, callback) => {
 };
 var getQuote_default = getQuote;
 
-// functions/quote.ts
+// functions/quote copy.ts
 var handler = async (event, context, callback) => {
   if (event.httpMethod === "GET") {
     return await getQuote_default(event, context, callback);
@@ -2817,4 +2817,4 @@ var handler = async (event, context, callback) => {
 0 && (module.exports = {
   handler
 });
-//# sourceMappingURL=quote.js.map
+//# sourceMappingURL=quote copy.js.map

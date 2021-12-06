@@ -1,12 +1,14 @@
-import { Button, notification, Table } from 'antd'
+import { Button, Input, notification, Table } from 'antd'
 import React, { useState } from 'react'
 import { getPortfolio } from '../api/portfolio';
+import { getQuote } from '../api/stocks/quote';
+import { getBalanceSheet } from '../api/stocks/balanceSheet';
 import { useAuth } from '../hooks/useAuth';
 import { BasicLayout } from '../layouts';
 
 const PortfolioPage = () =>{
   const auth = useAuth();
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState("MSFT");
   const [data, setData] = useState();
   const columns = [
     {
@@ -30,7 +32,30 @@ const PortfolioPage = () =>{
       key: 'Type',
     }
   ];
-
+  const getQuoteClick = async () => {
+    try {
+      var m = await getQuote(message);
+      console.log(m);
+      // setMessage(m.message);
+      notification.success({
+        message: 'Quote recuperata'
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const getBS = async () => {
+    try {
+      var m = await getBalanceSheet(message);
+      console.log(m);
+      // setMessage(m.message);
+      notification.success({
+        message: 'Balance sheet recuperato'
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const getPortfolioClick = async () => {
     try {
       var m = await getPortfolio();
@@ -47,10 +72,17 @@ const PortfolioPage = () =>{
     }
   }
     return (
-    <BasicLayout >
+    <BasicLayout >     
+      <div>
+        <Input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
+            <Button type="default" onClick={getQuoteClick}>Quote</Button>
+           <Button type="default" onClick={getBS}>Balance</Button>
+ 
+      </div>  
+
        <Button type="default" onClick={getPortfolioClick}>Airt</Button>
        <Button type="default" onClick={()=> auth?.signOut()} >Sign Out</Button>
-       <Table key="id" dataSource={data} columns={columns} />;
+       <Table key="id" dataSource={data} columns={columns} />
        {message}
     </BasicLayout>
     )

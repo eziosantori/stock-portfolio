@@ -2765,7 +2765,7 @@ var require_main = __commonJS({
   }
 });
 
-// functions/quote.ts
+// functions/income.ts
 __export(exports, {
   handler: () => handler
 });
@@ -2787,10 +2787,10 @@ var getIexData = async (ticker, scope, additionalQs = "") => {
   }
 };
 
-// functions/stocks/getQuote.ts
-var getQuote = async (event, context, callback) => {
+// functions/stocks/getIncomeStatment.ts
+var getIncomeStatment = async (event, context, callback) => {
   const { symbol } = event.queryStringParameters;
-  const res = await getIexData(symbol, "quote", "period=annual");
+  const res = await getIexData(symbol, "income", "period=annual");
   const retData = __spreadValues({}, res);
   return {
     statusCode: 200,
@@ -2800,12 +2800,12 @@ var getQuote = async (event, context, callback) => {
     body: JSON.stringify(retData)
   };
 };
-var getQuote_default = getQuote;
+var getIncomeStatment_default = getIncomeStatment;
 
-// functions/quote.ts
+// functions/income.ts
 var handler = async (event, context, callback) => {
   if (event.httpMethod === "GET") {
-    return await getQuote_default(event, context, callback);
+    return await getIncomeStatment_default(event, context, callback);
   } else {
     return {
       statusCode: 405,
@@ -2817,4 +2817,4 @@ var handler = async (event, context, callback) => {
 0 && (module.exports = {
   handler
 });
-//# sourceMappingURL=quote.js.map
+//# sourceMappingURL=income.js.map
