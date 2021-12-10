@@ -10,6 +10,7 @@ import {
 // import './App.less';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from "../hooks"
+import { Link } from 'react-router-dom';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -32,7 +33,7 @@ export const BasicLayout: React.FC = ({children}) => {
       <div className="logo" />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1" icon={<PieChartOutlined />}>
-          Option 1
+          <Link to="/intrinsic" > Intrinsic Value </Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<DesktopOutlined />}>
           Option 2

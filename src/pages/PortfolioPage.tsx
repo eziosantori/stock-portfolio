@@ -6,7 +6,7 @@ import { getBalanceSheet } from '../api/stocks/balanceSheet';
 import { useAuth } from '../hooks/useAuth';
 import { BasicLayout } from '../layouts';
 
-const PortfolioPage = () =>{
+export const PortfolioPage = () =>{
   const auth = useAuth();
   const [message, setMessage] = useState("MSFT");
   const [data, setData] = useState();
@@ -88,4 +88,3 @@ const PortfolioPage = () =>{
     )
 }
 
-export default PortfolioPage

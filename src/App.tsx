@@ -1,10 +1,10 @@
 import {PrivateRoute, ProvideAuth} from './hooks/useAuth';
-import PortfolioPage from  './pages/PortfolioPage';
 import './App.less';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import ResetPage from "./pages/Auth/ResetPage";
+import { PortfolioPage, IntrinsicValuePage } from  './pages';
 
 function App() {
   
@@ -19,6 +19,7 @@ function App() {
             <Route  path="/register" element={<RegisterPage />} />
             <Route  path="/reset" element={<ResetPage />} />
             <Route  path="/dashboard" element={pvt(<PortfolioPage />) } />
+            <Route  path="/intrinsic" element={pvt(<IntrinsicValuePage />) } />
         </Routes>
       </Router>    
 </ProvideAuth>

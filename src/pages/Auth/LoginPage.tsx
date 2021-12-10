@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import Login from "../../components/Auth/Login";
+import Login, { LoginNew } from "../../components/Auth/Login";
 const LoginPage = () => {
 
   const [user, loading, error] = useAuthState(auth);
@@ -15,7 +15,10 @@ const LoginPage = () => {
     if (user) navigate("/dashboard");
   }, [user, loading]);
   return (
-    <Login />
+    <>
+    {/* <Login /> */}
+    <LoginNew />
+</>
   );
 }
 export default LoginPage;
