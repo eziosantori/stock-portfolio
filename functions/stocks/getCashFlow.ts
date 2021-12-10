@@ -1,10 +1,10 @@
 
 import { Handler } from "@netlify/functions";
-import { getIexData } from "../_iexCloud";
+import { getIexDataStock } from "../_iexCloud";
 
   const getCashFlow: Handler = async (event, context, callback) => {
     const { symbol } = event.queryStringParameters;
-    const res = await getIexData(symbol, "cash-flow", "period=annual");     
+    const res = await getIexDataStock(symbol, "cash-flow", "period=annual");     
     const retData = {
         ...res
       }

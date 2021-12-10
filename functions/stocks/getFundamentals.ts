@@ -1,10 +1,10 @@
 
 import { Handler } from "@netlify/functions";
-import { getIexDataStock } from "../_iexCloud";
+import { getIexDataTimeSeries } from "../_iexCloud";
 
-  const getBalanceSheet: Handler = async (event, context, callback) => {
+  const getFundamentals: Handler = async (event, context, callback) => {
     const { symbol } = event.queryStringParameters;
-    const res = await getIexDataStock(symbol, "balance-sheet", "period=annual");     
+    const res = await getIexDataTimeSeries(symbol, "fundamentals", "annual", "last=5");     
     const retData = {
         ...res
       }
@@ -16,5 +16,5 @@ import { getIexDataStock } from "../_iexCloud";
       body: JSON.stringify(retData),
     };
   };
-  export default getBalanceSheet;
+  export default getFundamentals;
   
