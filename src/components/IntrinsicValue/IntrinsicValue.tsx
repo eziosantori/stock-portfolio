@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Form,
-  Input,
   Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
   Divider,
-  Row,
-  Col
+  Spin,
 } from 'antd';
 import { EvalModel, IntrincValueBaseData, IntrincValueData, IntrincValueDetailData } from './types';
 import { FormHeader, FormHeaderDefValues } from './FormHeader';
 import { FormDetails } from './FormDetails';
+import { getIntrinsicValueData } from '../../api/portfolio';
 
 export interface IntrinsicValueProps {
   ticker: string;
@@ -34,17 +25,24 @@ export type CalcResult = {
 export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({
   ticker
 }) => {
-
+  const [loading, seLoading] = useState(true);
   const [data, setData] = useState<IntrincValueBaseData>(FormHeaderDefValues);
   const [growthN, setGrowthN] = useState<IntrincValueDetailData>({ weight: 60, growthRate: 5, growthDecline: 2, finalMultiple: 15 });
   const [growthB, setGrowthB] = useState<IntrincValueDetailData>({ weight: 20, growthRate: 10, growthDecline: 1, finalMultiple: 20 });
   const [growthW, setGrowthW] = useState<IntrincValueDetailData>({ weight: 20, growthRate: 2, growthDecline: 2, finalMultiple: 10 });
+  
   useEffect(() => {
-    //
+    getIntrinsicValueData(ticker)
+    .then((res) => {
+
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     return () => {
       // cleanup
     }
-  }, [])
+  }, [ticker])
   const onFinish = async () => {
     // console.log('onFinish of form: ', values);
     var v = {...data, ...growthN};
@@ -121,7 +119,8 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({
   }
   return (
     <>
-
+     {/* <Spin tip="Loading..." size="large">   </Spin> */}
+      {ticker}
       <FormHeader onValuesChange={onHeaderChange} defValues={data} />
       <Divider orientation="left">Growth</Divider>
       <FormDetails growthCase='Normal' defValues={growthN} onValuesChange={onValuesChange} />
@@ -131,7 +130,7 @@ export const IntrinsicValue: React.FC<IntrinsicValueProps> = ({
       <FormDetails growthCase='Worst' defValues={growthW} onValuesChange={onValuesChange} />
       <Button htmlType="button" onClick={onFinish} type='primary' >Calcola</Button>
       <Divider orientation="left">Results:</Divider>
-  
+
     </>
   );
 };

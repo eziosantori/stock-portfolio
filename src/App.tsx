@@ -19,7 +19,7 @@ function App() {
             <Route  path="/register" element={<RegisterPage />} />
             <Route  path="/reset" element={<ResetPage />} />
             <Route  path="/dashboard" element={pvt(<PortfolioPage />) } />
-            <Route  path="/intrinsic" element={pvt(<IntrinsicValuePage />) } />
+            <Route  path="/intrinsic/:ticker" element={pvt(<IntrinsicValuePage />) } />
         </Routes>
       </Router>    
 </ProvideAuth>

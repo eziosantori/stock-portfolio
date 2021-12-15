@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { getPortfolio } from '../api/portfolio';
 import { getQuote } from '../api/stocks/quote';
 import { getBalanceSheet } from '../api/stocks/balanceSheet';
+import { getFundamentals } from '../api/stocks/fundamentals';
 import { useAuth } from '../hooks/useAuth';
 import { BasicLayout } from '../layouts';
 
@@ -56,6 +57,18 @@ export const PortfolioPage = () =>{
       console.log(error);
     }
   }
+  const getFnd = async () => {
+    try {
+      var m = await getFundamentals(message);
+      console.log(m);
+      // setMessage(m.message);
+      notification.success({
+        message: 'Fundamentals recuperati'
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const getPortfolioClick = async () => {
     try {
       var m = await getPortfolio();
@@ -76,7 +89,8 @@ export const PortfolioPage = () =>{
       <div>
         <Input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
             <Button type="default" onClick={getQuoteClick}>Quote</Button>
-           <Button type="default" onClick={getBS}>Balance</Button>
+            <Button type="default" onClick={getBS}>Balance</Button>
+           <Button type="default" onClick={getFnd}>Fundamentals</Button>
  
       </div>  
 
