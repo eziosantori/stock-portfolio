@@ -33,7 +33,7 @@ export const BasicLayout: React.FC = ({children}) => {
       <div className="logo" />
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
         <Menu.Item key="1" icon={<PieChartOutlined />}>
-          <Link to="/intrinsic" > Intrinsic Value </Link>
+          <Link to="/dashboard" > Dashboard </Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<DesktopOutlined />}>
           Option 2
