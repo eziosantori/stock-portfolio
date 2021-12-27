@@ -4,12 +4,13 @@ export interface UserState {
   loading: boolean
   displayName?: string;
   email?: string;
-  uid?: string;
+  uid: string;
   photoURL?: string;
 }
 
 const initialState: UserState = {
   loading: true,
+  uid: ""
 }
 
 export const userSlice = createSlice({

@@ -1,30 +1,61 @@
 import { Button, notification, Table } from 'antd'
-import React, { useState } from 'react'
+import { ColumnsType } from 'antd/lib/table';
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { getPortfolio } from '../../api/portfolio';
+import { PortfolioItem } from '../../api/portfolio/types';
 
-export const Dashboard = () =>{
-    const [message, setMessage] = useState();
+export interface DashboardProps {
+  onTickerClick(item: PortfolioItem): void;
+}
+export const Dashboard: React.FC<DashboardProps> = ({onTickerClick}) =>{
+  
+  const [message, setMessage] = useState();
   const [data, setData] = useState();
-  const columns = [
+  useEffect(() => {
+    getPortfolioClick();
+    return () => {
+      // cleanup
+    }
+  }, [])
+  const columns: ColumnsType<PortfolioItem> = [
     {
       title: 'Ticker',
-      dataIndex: 'Ticker',
-      key: 'Ticker',
+      dataIndex: 'ticker',
+      key: 'ticker',
+      fixed: 'left',
+      width: 100,
+      render: (text: string, record: PortfolioItem) => 
+        <Button type="link" onClick={()=> onTickerClick(record)}>{text}</Button>
     },
     {
       title: 'Price',
-      dataIndex: 'Price',
+      dataIndex: 'price',
       key: 'Price',
+      width: 100,
     },
     {
-      title: 'EvalutationType',
-      dataIndex: 'EvalutationType',
-      key: 'EvalutationType',
+      title: 'Instrinsic Value',
+      dataIndex: 'fairValue',
+      key: 'fairValue',
+      width: 100,
+      render: (text: string, record: PortfolioItem) => 
+      <Link to={`/intrinsic/${record.ticker}`}>{text}</Link>
+    },
+    {
+      title: 'Sector',
+      dataIndex: 'sector',
+      key: 'Sector',
     },
     {
       title: 'Type',
-      dataIndex: 'Type',
+      dataIndex: 'type',
       key: 'Type',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
     }
   ];
 
@@ -45,8 +76,8 @@ export const Dashboard = () =>{
   }
     return (
     <>
-       <Button type="default" onClick={getPortfolioClick}>Airt</Button>
-       <Table key="id" dataSource={data} columns={columns} />;
+       <Button type="default" onClick={getPortfolioClick}>Reload</Button>
+       <Table key="id" dataSource={data} columns={columns} scroll={{ x: 1500 }} />;
        {message}
     </>
     )
