@@ -1,6 +1,7 @@
 
 export interface PortfolioItem {
     ticker: string;
+    name: string;
     price: number;
     fairValue: number;
     marginOfSaefty?: number;

@@ -36,7 +36,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "debug": "netlify dev --inspect"
+    "debug": "netlify dev --inspect",
+    "deploy" : "netlify deploy --dir=build --functions=functions"
   },
   "eslintConfig": {
     "extends": [

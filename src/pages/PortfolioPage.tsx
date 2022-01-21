@@ -1,8 +1,6 @@
 import { Button, Input, Modal, notification, Table } from 'antd'
+import { PageHeader, Tabs, Statistic, Descriptions } from 'antd';
 import React, { useState } from 'react'
-import { getPortfolio } from '../api/portfolio';
-import { getQuote } from '../api/stocks/quote';
-import { getBalanceSheet } from '../api/stocks/balanceSheet';
 import { getFundamentals } from '../api/stocks/fundamentals';
 import { useAuth } from '../hooks/useAuth';
 import { BasicLayout } from '../layouts';
@@ -14,7 +12,6 @@ export const PortfolioPage = () =>{
   const auth = useAuth();
   const [showNewItem, setShowNewItem] = useState(false);
   const [editItem, setEditItem] = useState<PortfolioItem>();
-  const [message, setMessage] = useState("MSFT");
 
   const closeModal = () => {
     setShowNewItem(false);
@@ -22,24 +19,22 @@ export const PortfolioPage = () =>{
   }
     return (
       <>
-    <BasicLayout >     
-            <Button type="primary" onClick={()=> setShowNewItem(true)}>+ New</Button>
-
-      {/* <div>
-        <Input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
-            <Button type="default" onClick={getQuoteClick}>Quote</Button>
-            <Button type="default" onClick={getBS}>Balance</Button>
-           <Button type="default" onClick={getFnd}>Fundamentals</Button>
- 
-      </div>  
-
-       <Button type="default" onClick={getPortfolioClick}>Airt</Button> */}
-       <Button type="default" onClick={()=> auth?.signOut()} >Sign Out</Button>
+    <BasicLayout >
+      <PageHeader
+        ghost={false}
+        // onBack={() => window.history.back()}
+        title="Portfolio"
+        subTitle="This is a subtitle"
+        extra={[
+          <Button type="primary" onClick={()=> setShowNewItem(true)}>+ New</Button>,
+          <Button type="default" onClick={()=> auth?.signOut()} >Sign Out</Button>,
+        ]}
+      >
        {showNewItem || editItem ?
         null
         : <Dashboard onTickerClick={(item) => setEditItem(item)} />
         }
-       
+      </PageHeader> 
       
     </BasicLayout>
     <Modal

@@ -149,7 +149,6 @@ export const IntrinsicValue2: React.FC<IntrinsicValueProps> = ({
     <>
       {/* */}
       <Spin tip="Loading..." size="large" spinning={loading}>  
-      {ticker}
       <Form
         form={form}
         onFinish={onFinish}
@@ -160,7 +159,7 @@ export const IntrinsicValue2: React.FC<IntrinsicValueProps> = ({
         layout="vertical"
         // labelCol={{ span: 4 }}
         // wrapperCol={{ span: 14 }}
-        size={'middle'}
+        // size={'middle'}
       >
         <Row gutter={24}>
           <Col span={8}>

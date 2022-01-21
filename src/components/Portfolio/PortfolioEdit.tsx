@@ -47,7 +47,7 @@ export const PortfolioEdit: React.FC<PortfolioEditProps> = ({
   return (
     <Form
       form={form}
-      size='middle'
+      // size='middle'
       name="Portfolio"
       labelCol={{ span: 6 }}
       wrapperCol={{ span: 14 }}
@@ -61,7 +61,7 @@ export const PortfolioEdit: React.FC<PortfolioEditProps> = ({
       <Form.Item
         label="Ticker"
         name="ticker"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[{ required: true, message: 'Please input the ticker symbol!' }]}
       >
         <Input.Search
           placeholder="input search text"
@@ -70,6 +70,13 @@ export const PortfolioEdit: React.FC<PortfolioEditProps> = ({
           onSearch={onSearch}
     />
       </Form.Item>
+      <Form.Item
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: 'Please input the company name!' }]}
+      >
+        <Input />
+      </Form.Item>      
       <Form.Item label="Price Action" style={{ marginBottom: 0 }}>
       <Form.Item
           name="price"
